@@ -8,36 +8,15 @@
 </head>
 <body>
     <h1 class="hero-title">HerStory: Financial Wisdom</h1>
-
+    
     <div class="carousel-container">
-        <button class="nav-btn" id="prev-btn">←</button>
-
-        <div id="leader-card" class="leader-card">
-            <div class="curved-image-section">
-                <div class="curved-text-container">
-                    <div class="text-arc"></div>
-                    <p id="curved-text" class="curved-text">Hi, I'm Michele! Let's Chat!</p>
-                </div>
-                <div class="profile-circle-wrapper">
-                    <img id="leader-img" src="public/michelle_obama.png" alt="Leader Image">
-                </div>
-            </div>
-            <h2 id="leader-name" class="leader-name-text">Michelle Obama</h2>
-            <p id="leader-title" class="leader-title-text">Education & Social Impact 🎓</p>
-            <p id="leader-specialty" class="leader-specialty-text">
-                Passionate about financial literacy through education reform and community investment strategies. Empowering communities through strategic financial planning.
-            </p>
-            <button id="start-chat-btn">Start Chatting</button>
+        <button id="prev-btn" class="arrow-btn">←</button>
+        
+        <div id="card-container">
+            <!-- Leader card will be injected here by JS -->
         </div>
-
-        <button class="nav-btn" id="next-btn">→</button>
-    </div>
-
-    <div id="chat-container" class="chat-container hidden">
-        <button id="back-btn">← Back</button>
-        <div id="chat-messages"></div>
-        <input type="text" id="user-input" placeholder="Ask a leader about finance...">
-        <button id="send-btn">Send</button>
+        
+        <button id="next-btn" class="arrow-btn">→</button>
     </div>
 
     <script src="chat.js"></script>
