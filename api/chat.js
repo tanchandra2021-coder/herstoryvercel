@@ -7,7 +7,7 @@ const leaders = [
     { name: "Sheryl Sandberg", title: "Tech Finance Executive", specialty: "Data-driven approach to tech valuations, scaling startups, and financial operations.", emoji:"💻", image:"/Sheryl_Sandberg.png" },
     { name: "Jacinda Ardern", title: "Wellbeing Economics", specialty: "Compassionate approach to budget management, public finance, and wellbeing economics.", emoji:"🌱", image:"/Jacinda_Ardern.png" },
     { name: "Mae Jemison", title: "STEM Finance Pioneer", specialty: "Innovative thinking on R&D funding, STEM investment, and technology venture capital.", emoji:"🚀", image:"/Mae_Jemison.png" },
-    { name: "Reshma Saujani", title: "Startup Finance Advocate", specialty: "Bold approach to fundraising, startup equity, and building financial resilience in tech.", emoji:"💪", image:"/Reshman_Saujani.png" },
+    { name: "Reshma Saujani", title: "Startup Finance Advocate", specialty: "Bold approach to fundraising, startup equity, and building financial resilience in tech.", emoji:"💪", image:"/Reshma_Saujani.png" },
     { name: "Sara Blakely", title: "Bootstrap Finance Expert", specialty: "Self-made approach to bootstrapping businesses, cash flow management, and building wealth.", emoji:"✨", image:"/Sara_Blakely.png" },
 ];
 
