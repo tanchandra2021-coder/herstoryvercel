@@ -1,14 +1,14 @@
 const leaders = [
-    { name: "Michelle Obama", title: "Education & Social Impact", specialty: "Passionate about financial literacy through education reform and community investment strategies.", emoji:"🎓", image:"public/Michelle_Obama.png" },
-    { name: "Angela Merkel", title: "Economic Policy Expert", specialty: "Analytical approach to fiscal policy, European economics, and strategic financial planning.", emoji:"📊", image:"public/Angela_Merkel.png" },
-    { name: "Malala Yousafzai", title: "Social Finance Advocate", specialty: "Passionate insights on funding education, microfinance, and investing in social change.", emoji:"🌍", image:"public/Malala_Yousafzai.png" },
-    { name: "Ruth Bader Ginsburg", title: "Financial Law & Ethics", specialty: "Precise guidance on financial regulations, investment law, and ethical wealth management.", emoji:"⚖️", image:"public/Ruth_Bader_Ginsburg.png" },
-    { name: "Indra Nooyi", title: "Corporate Finance Leader", specialty: "Strategic insights on corporate finance, M&A, sustainable business growth, and CFO excellence.", emoji:"💼", image:"public/Indra_Nooyi.png" },
-    { name: "Sheryl Sandberg", title: "Tech Finance Executive", specialty: "Data-driven approach to tech valuations, scaling startups, and financial operations.", emoji:"💻", image:"public/Sheryl_Sandberg.png" },
-    { name: "Jacinda Ardern", title: "Wellbeing Economics", specialty: "Compassionate approach to budget management, public finance, and wellbeing economics.", emoji:"🌱", image:"public/Jacinda_Ardern.png" },
-    { name: "Mae Jemison", title: "STEM Finance Pioneer", specialty: "Innovative thinking on R&D funding, STEM investment, and technology venture capital.", emoji:"🚀", image:"public/Mae_Jemison.png" },
-    { name: "Reshma Saujani", title: "Startup Finance Advocate", specialty: "Bold approach to fundraising, startup equity, and building financial resilience in tech.", emoji:"💪", image:"public/Reshman_Saujani.png" },
-    { name: "Sara Blakely", title: "Bootstrap Finance Expert", specialty: "Self-made approach to bootstrapping businesses, cash flow management, and building wealth.", emoji:"✨", image:"public/Sara_Blakely.png" },
+    { name: "Michelle Obama", title: "Education & Social Impact", specialty: "Passionate about financial literacy through education reform and community investment strategies.", emoji:"🎓", image:"/Michelle_Obama.png" },
+    { name: "Angela Merkel", title: "Economic Policy Expert", specialty: "Analytical approach to fiscal policy, European economics, and strategic financial planning.", emoji:"📊", image:"/Angela_Merkel.png" },
+    { name: "Malala Yousafzai", title: "Social Finance Advocate", specialty: "Passionate insights on funding education, microfinance, and investing in social change.", emoji:"🌍", image:"/Malala_Yousafzai.png" },
+    { name: "Ruth Bader Ginsburg", title: "Financial Law & Ethics", specialty: "Precise guidance on financial regulations, investment law, and ethical wealth management.", emoji:"⚖️", image:"/Ruth_Bader_Ginsburg.png" },
+    { name: "Indra Nooyi", title: "Corporate Finance Leader", specialty: "Strategic insights on corporate finance, M&A, sustainable business growth, and CFO excellence.", emoji:"💼", image:"/Indra_Nooyi.png" },
+    { name: "Sheryl Sandberg", title: "Tech Finance Executive", specialty: "Data-driven approach to tech valuations, scaling startups, and financial operations.", emoji:"💻", image:"/Sheryl_Sandberg.png" },
+    { name: "Jacinda Ardern", title: "Wellbeing Economics", specialty: "Compassionate approach to budget management, public finance, and wellbeing economics.", emoji:"🌱", image:"/Jacinda_Ardern.png" },
+    { name: "Mae Jemison", title: "STEM Finance Pioneer", specialty: "Innovative thinking on R&D funding, STEM investment, and technology venture capital.", emoji:"🚀", image:"/Mae_Jemison.png" },
+    { name: "Reshma Saujani", title: "Startup Finance Advocate", specialty: "Bold approach to fundraising, startup equity, and building financial resilience in tech.", emoji:"💪", image:"/Reshman_Saujani.png" },
+    { name: "Sara Blakely", title: "Bootstrap Finance Expert", specialty: "Self-made approach to bootstrapping businesses, cash flow management, and building wealth.", emoji:"✨", image:"/Sara_Blakely.png" },
 ];
 
 let currentIndex = 0;
@@ -33,15 +33,16 @@ function renderCard(index){
     `;
 }
 
-prevBtn.addEventListener('click', ()=>{
-    currentIndex = (currentIndex-1+leaders.length)%leaders.length;
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + leaders.length) % leaders.length;
     renderCard(currentIndex);
 });
 
-nextBtn.addEventListener('click', ()=>{
-    currentIndex = (currentIndex+1)%leaders.length;
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % leaders.length;
     renderCard(currentIndex);
 });
 
 // Initial render
 renderCard(currentIndex);
+
