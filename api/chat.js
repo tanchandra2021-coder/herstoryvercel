@@ -1,81 +1,93 @@
-const leaders = {
-  "Michelle Obama": {
+export const leaders = [
+  {
+    name: "Michelle Obama",
     title: "Education & Social Impact",
-    specialty: "Passionate about financial literacy through education reform and community investment strategies.",
+    specialty: "Passionate about financial literacy through education reform and community investment strategies. Empowering communities through strategic financial planning.",
     emoji: "🎓",
-    image: "/Michelle_Obama.png",
-    expertise: ["Impact Investing", "Education Finance"]
+    style: "inspiring",
+    expertise: ["Impact Investing", "Education Finance"],
+    image: "/Michelle_Obama.png"
   },
-  "Angela Merkel": {
+  {
+    name: "Angela Merkel",
     title: "Economic Policy Expert",
-    specialty: "Analytical approach to fiscal policy, European economics, and strategic financial planning.",
+    specialty: "Analytical approach to fiscal policy, European economics, and strategic financial planning. Bringing decades of economic leadership experience.",
     emoji: "📊",
-    image: "/Angela_Merkel.png",
-    expertise: ["Fiscal Policy", "Economic Strategy"]
+    style: "analytical",
+    expertise: ["Fiscal Policy", "Economic Strategy"],
+    image: "/Angela_Merkel.png"
   },
-  "Malala Yousafzai": {
+  {
+    name: "Malala Yousafzai",
     title: "Social Finance Advocate",
-    specialty: "Championing financial empowerment for all through microfinance and education.",
+    specialty: "Passionate insights on funding education, microfinance, and investing in social change. Championing financial empowerment for all.",
     emoji: "🌍",
-    image: "/Malala_Yousafazi.png",
-    expertise: ["Microfinance","Social Bonds"]
+    style: "passionate",
+    expertise: ["Microfinance", "Social Bonds"],
+    image: "/Malala_Yousafazi.png"
   },
-  "Ruth Bader Ginsburg": {
+  {
+    name: "Ruth Bader Ginsburg",
     title: "Financial Law & Ethics",
-    specialty: "Precise guidance on financial regulations and ethical wealth management.",
+    specialty: "Precise guidance on financial regulations, investment law, and ethical wealth management. Justice in every financial decision.",
     emoji: "⚖️",
-    image: "/Ruth_Bader_Ginsburg.png",
-    expertise: ["Financial Law","Securities"]
+    style: "precise",
+    expertise: ["Financial Law", "Securities"],
+    image: "/Ruth_Bader_Ginsburg.png"
+  },
+  {
+    name: "Indra Nooyi",
+    title: "Corporate Finance Leader",
+    specialty: "Strategic insights on corporate finance, M&A, sustainable business growth, and CFO excellence. Transforming businesses through financial innovation.",
+    emoji: "💼",
+    style: "strategic",
+    expertise: ["Corporate Finance", "M&A"],
+    image: "/Indra_Nooyi.png"
+  },
+  {
+    name: "Sheryl Sandberg",
+    title: "Tech Finance Executive",
+    specialty: "Data-driven approach to tech valuations, scaling startups, and financial operations. Building the future of tech finance.",
+    emoji: "💻",
+    style: "analytical",
+    expertise: ["Tech Finance", "Scaling"],
+    image: "/Sheryl_Sandberg.png"
+  },
+  {
+    name: "Jacinda Ardern",
+    title: "Wellbeing Economics",
+    specialty: "Compassionate approach to budget management, public finance, and wellbeing economics. Putting people at the center of financial policy.",
+    emoji: "🌱",
+    style: "empathetic",
+    expertise: ["Public Finance", "Budget Policy"],
+    image: "/Jacinda_Ardern.png"
+  },
+  {
+    name: "Mae Jemison",
+    title: "STEM Finance Pioneer",
+    specialty: "Innovative thinking on R&D funding, STEM investment, and technology venture capital. Pioneering the frontier of innovation finance.",
+    emoji: "🚀",
+    style: "innovative",
+    expertise: ["Venture Capital", "R&D Finance"],
+    image: "/Mae_Jemison.png"
+  },
+  {
+    name: "Reshma Saujani",
+    title: "Startup Finance Advocate",
+    specialty: "Bold approach to fundraising, startup equity, and building financial resilience in tech. Breaking barriers in venture capital.",
+    emoji: "💪",
+    style: "bold",
+    expertise: ["Fundraising", "Startup Equity"],
+    image: "/Reshman_Saujani.png"
+  },
+  {
+    name: "Sara Blakely",
+    title: "Bootstrap Finance Expert",
+    specialty: "Self-made approach to bootstrapping businesses, cash flow management, and building wealth. Turning ideas into billion-dollar businesses.",
+    emoji: "✨",
+    style: "creative",
+    expertise: ["Bootstrapping", "Cash Flow"],
+    image: "/Sara_Blakely.png"
   }
-  // Add the remaining leaders here similarly...
-};
-
-let currentIndex = 0;
-const leadersList = Object.keys(leaders);
-
-function updateCard() {
-  const leader = leaders[leadersList[currentIndex]];
-  document.getElementById("curvedText").innerHTML = `Hi, I'm <b>${leadersList[currentIndex].split(" ")[0]}</b>!`;
-  document.getElementById("leaderImg").src = leader.image;
-  document.getElementById("leaderName").innerText = leadersList[currentIndex];
-  document.getElementById("leaderTitle").innerText = `${leader.title} ${leader.emoji}`;
-  document.getElementById("leaderSpecialty").innerText = leader.specialty;
-
-  const tagsContainer = document.getElementById("expertiseTags");
-  tagsContainer.innerHTML = "";
-  leader.expertise.forEach(exp => {
-    const span = document.createElement("span");
-    span.innerText = exp;
-    tagsContainer.appendChild(span);
-  });
-
-  const card = document.getElementById("leaderCard");
-  card.classList.remove("card-exit");
-  void card.offsetWidth; // trigger reflow for restart animation
-  card.style.animation = "cardSlideIn 0.8s forwards";
-}
-
-document.getElementById("prevBtn").addEventListener("click", () => {
-  const card = document.getElementById("leaderCard");
-  card.classList.add("card-exit");
-  setTimeout(() => {
-    currentIndex = (currentIndex - 1 + leadersList.length) % leadersList.length;
-    updateCard();
-  }, 500);
-});
-
-document.getElementById("nextBtn").addEventListener("click", () => {
-  const card = document.getElementById("leaderCard");
-  card.classList.add("card-exit");
-  setTimeout(() => {
-    currentIndex = (currentIndex + 1) % leadersList.length;
-    updateCard();
-  }, 500);
-});
-
-document.getElementById("startChatBtn").addEventListener("click", () => {
-  alert(`Chat with ${leadersList[currentIndex]} coming soon!`);
-});
-
-updateCard(); // initialize first card
+];
 
