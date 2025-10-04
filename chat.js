@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const prevBtn = document.getElementById('prev-btn');
     const nextBtn = document.getElementById('next-btn');
 
-    function renderCard(index){
+    function renderCard(index) {
         const leader = leaders[index];
         container.innerHTML = `
             <div class="leader-card">
@@ -48,5 +48,3 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial render
     renderCard(currentIndex);
 });
-
-
