@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HerStory Finance AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 class="hero-title">HerStory: Financial Wisdom</h1>
+
+<div id="carousel-container">
+  <button id="prev-btn">←</button>
+  <div id="leader-card-container"></div>
+  <button id="next-btn">→</button>
+</div>
+
+<script>
+const leaders = {
+  "Michelle Obama": {
+    title: "Education & Social Impact",
+    specialty: "Passionate about financial literacy through education reform and community investment strategies.",
+    emoji: "🎓",
+    image: "public/Michelle_Obama.png"
+  },
+  "Angela Merkel": {
+    title: "Economic Policy Expert",
+    specialty: "Analytical approach to fiscal policy, European economics, and strategic financial planning.",
+    emoji: "📊",
+    image: "public/Angela_Merkel.png"
+  },
+  // ... Add all other leaders here ...
+};
+
+let leaderKeys = Object.keys(leaders);
+let currentIndex = 0;
+
+function renderLeader(index) {
+  const leader = leaders[leaderKeys[index]];
+  const container = document.getElementById("leader-card-container");
+  
+  container.innerHTML = `
+    <div class="leader-card">
+      <div class="curved-image-section">
+        <div class="curved-text-container">
+          <p class="curved-text">Hi, I'm ${leaderKeys[index].split(' ')[0]}!</p>
+        </div>
+        <img class="profile-circle" src="${leader.image}" />
+      </div>
+      <h2 class="leader-name-text">${leaderKeys[index]}</h2>
+      <p class="leader-title-text">${leader.title} ${leader.emoji}</p>
+      <p class="leader-specialty-text">${leader.specialty}</p>
+      <button id="start-chat-btn">Start Chatting</button>
+    </div>
+  `;
+
+  document.getElementById("start-chat-btn").onclick = () => {
+    alert(`Chat with ${leaderKeys[index]} coming soon!`);
+  };
+}
+
+document.getElementById("prev-btn").onclick = () => {
+  currentIndex = (currentIndex - 1 + leaderKeys.length) % leaderKeys.length;
+  renderLeader(currentIndex);
+};
+
+document.getElementById("next-btn").onclick = () => {
+  currentIndex = (currentIndex + 1) % leaderKeys.length;
+  renderLeader(currentIndex);
+};
+
+// Initial render
+renderLeader(currentIndex);
+</script>
+</body>
+</html>
