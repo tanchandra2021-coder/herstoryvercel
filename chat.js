@@ -1,3 +1,4 @@
+// chat.js
 const leaders = [
     { name: "Michelle Obama", title: "Education & Social Impact", specialty: "Passionate about financial literacy through education reform and community investment strategies.", emoji:"🎓", image:"/Michelle_Obama.png" },
     { name: "Angela Merkel", title: "Economic Policy Expert", specialty: "Analytical approach to fiscal policy, European economics, and strategic financial planning.", emoji:"📊", image:"/Angela_Merkel.png" },
@@ -11,38 +12,41 @@ const leaders = [
     { name: "Sara Blakely", title: "Bootstrap Finance Expert", specialty: "Self-made approach to bootstrapping businesses, cash flow management, and building wealth.", emoji:"✨", image:"/Sara_Blakely.png" },
 ];
 
-let currentIndex = 0;
+document.addEventListener("DOMContentLoaded", () => {
+    let currentIndex = 0;
 
-const container = document.getElementById('card-container');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
+    const container = document.getElementById('card-container');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
 
-function renderCard(index){
-    const leader = leaders[index];
-    container.innerHTML = `
-        <div class="leader-card">
-            <div class="profile-circle-wrapper">
-                <img src="${leader.image}" alt="${leader.name}">
+    function renderCard(index){
+        const leader = leaders[index];
+        container.innerHTML = `
+            <div class="leader-card">
+                <div class="profile-circle-wrapper">
+                    <img src="${leader.image}" alt="${leader.name}">
+                </div>
+                <div class="curved-text">Hi, I'm ${leader.name.split(" ")[0]}!</div>
+                <div class="leader-name">${leader.name}</div>
+                <div class="leader-title">${leader.title} ${leader.emoji}</div>
+                <div class="leader-specialty">"${leader.specialty}"</div>
+                <button class="start-chat-btn">Start Chatting</button>
             </div>
-            <div class="curved-text">Hi, I'm ${leader.name.split(" ")[0]}!</div>
-            <div class="leader-name">${leader.name}</div>
-            <div class="leader-title">${leader.title} ${leader.emoji}</div>
-            <div class="leader-specialty">"${leader.specialty}"</div>
-            <button class="start-chat-btn">Start Chatting</button>
-        </div>
-    `;
-}
+        `;
+    }
 
-prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + leaders.length) % leaders.length;
+    prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + leaders.length) % leaders.length;
+        renderCard(currentIndex);
+    });
+
+    nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % leaders.length;
+        renderCard(currentIndex);
+    });
+
+    // Initial render
     renderCard(currentIndex);
 });
 
-nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % leaders.length;
-    renderCard(currentIndex);
-});
-
-// Initial render
-renderCard(currentIndex);
 
