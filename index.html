@@ -1,40 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HerStory Finance AI</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HerStory Finance AI</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1 class="hero-title">HerStory: Financial Wisdom</h1>
+    <h1 class="hero-title">HerStory: Financial Wisdom</h1>
 
-  <div class="carousel-container">
-    <button id="prevBtn" class="arrow-btn">←</button>
+    <div class="carousel-container">
+        <button class="nav-btn" id="prev-btn">←</button>
 
-    <div class="leader-card" id="leaderCard">
-      <div class="curved-image-section">
-        <div class="curved-text-container">
-          <div class="text-arc"></div>
-          <p class="curved-text" id="curvedText"></p>
+        <div id="leader-card" class="leader-card">
+            <div class="curved-image-section">
+                <div class="curved-text-container">
+                    <div class="text-arc"></div>
+                    <p id="curved-text" class="curved-text">Hi, I'm Michele! Let's Chat!</p>
+                </div>
+                <div class="profile-circle-wrapper">
+                    <img id="leader-img" src="public/michelle_obama.png" alt="Leader Image">
+                </div>
+            </div>
+            <h2 id="leader-name" class="leader-name-text">Michelle Obama</h2>
+            <p id="leader-title" class="leader-title-text">Education & Social Impact 🎓</p>
+            <p id="leader-specialty" class="leader-specialty-text">
+                Passionate about financial literacy through education reform and community investment strategies. Empowering communities through strategic financial planning.
+            </p>
+            <button id="start-chat-btn">Start Chatting</button>
         </div>
-        <div class="profile-circle-wrapper">
-          <img id="leaderImg" src="" alt="Leader Image" />
-        </div>
-      </div>
 
-      <h2 class="leader-name-text" id="leaderName"></h2>
-      <p class="leader-title-text" id="leaderTitle"></p>
-      <p class="leader-specialty-text" id="leaderSpecialty"></p>
-      <div id="expertiseTags" class="expertise-tags-container"></div>
-
-      <button id="startChatBtn" class="start-chat-btn">Start Chatting</button>
+        <button class="nav-btn" id="next-btn">→</button>
     </div>
 
-    <button id="nextBtn" class="arrow-btn">→</button>
-  </div>
+    <div id="chat-container" class="chat-container hidden">
+        <button id="back-btn">← Back</button>
+        <div id="chat-messages"></div>
+        <input type="text" id="user-input" placeholder="Ask a leader about finance...">
+        <button id="send-btn">Send</button>
+    </div>
 
-  <script src="chat.js"></script>
+    <script src="chat.js"></script>
 </body>
 </html>
-
