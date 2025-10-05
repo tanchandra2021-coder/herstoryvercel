@@ -15,7 +15,7 @@ const leaders = {
         title: "Social Finance Advocate",
         specialty: "Passionate insights on funding education, microfinance, and investing in social change",
         expertise: ["Microfinance", "Social Bonds"],
-        image: "Malala_Yousafzai.png"
+        image: "Malala_Yousafazi.png"
     },
     "Ruth Bader Ginsburg": {
         title: "Financial Law & Ethics",
@@ -51,7 +51,7 @@ const leaders = {
         title: "Startup Finance Advocate",
         specialty: "Bold approach to fundraising, startup equity, and building financial resilience",
         expertise: ["Fundraising", "Startup Equity"],
-        image: "Reshma_Saujani.png"
+        image: "Reshman_Saujani.png"
     },
     "Sara Blakely": {
         title: "Bootstrap Finance Expert",
