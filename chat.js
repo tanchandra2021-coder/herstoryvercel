@@ -250,7 +250,19 @@ Respond as ${leaderName} in 2-3 sentences, staying in character. Keep it convers
     const data = await response.json();
     console.log('Full API Response:', data);
     
-    return data.candidates[0].content.parts[0].text;
+    // Handle the response structure - Gemini 2.5 has a different format
+    if (data.candidates && data.candidates.length > 0) {
+        const candidate = data.candidates[0];
+        if (candidate.content && candidate.content.parts && candidate.content.parts.length > 0) {
+            // Find the first part with text (skip thinking parts)
+            const textPart = candidate.content.parts.find(part => part.text);
+            if (textPart) {
+                return textPart.text;
+            }
+        }
+    }
+    
+    throw new Error('Unable to parse response from API');
 }
 
 function addMessage(type, text) {
