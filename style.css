@@ -8,7 +8,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #FFF5F7 0%, #FFE5F0 25%, #F0F8FF 50%, #FFF8F0 75%, #F5F0FF 100%);
+    background: linear-gradient(135deg, #FFF5F7 0%, #FFE8F0 25%, #F0F8FF 50%, #FFF8E8 75%, #FFE8F5 100%);
     background-size: 400% 400%;
     animation: bgFlow 20s ease infinite;
     display: flex;
@@ -42,7 +42,7 @@ body {
 .blob-1 {
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, #FFB6D9, #FFC9E5);
+    background: radial-gradient(circle, #FF69B4, #FF85C1);
     top: -200px;
     left: -200px;
     animation: float 20s ease-in-out infinite, colorShift1 15s ease-in-out infinite;
@@ -51,7 +51,7 @@ body {
 .blob-2 {
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, #C4B5FD, #DDD6FE);
+    background: radial-gradient(circle, #4FC3F7, #81D4FA);
     top: 50%;
     right: -300px;
     animation: float 23s ease-in-out infinite reverse, colorShift2 18s ease-in-out infinite;
@@ -60,7 +60,7 @@ body {
 .blob-3 {
     width: 550px;
     height: 550px;
-    background: radial-gradient(circle, #FECDD3, #FBE0E7);
+    background: radial-gradient(circle, #FF6B9D, #FF8FB3);
     bottom: -200px;
     left: 30%;
     animation: float 28s ease-in-out infinite, colorShift3 20s ease-in-out infinite;
@@ -69,7 +69,7 @@ body {
 .blob-4 {
     width: 650px;
     height: 650px;
-    background: radial-gradient(circle, #BFDBFE, #DBEAFE);
+    background: radial-gradient(circle, #FFB347, #FFCC80);
     top: 20%;
     left: 50%;
     animation: float 26s ease-in-out infinite reverse, colorShift4 17s ease-in-out infinite;
@@ -83,23 +83,23 @@ body {
 }
 
 @keyframes colorShift1 {
-    0%, 100% { background: radial-gradient(circle, #FFB6D9, #FFC9E5); }
-    50% { background: radial-gradient(circle, #FDE4E4, #FFD6E8); }
+    0%, 100% { background: radial-gradient(circle, #FF69B4, #FF85C1); }
+    50% { background: radial-gradient(circle, #FF1493, #FF69B4); }
 }
 
 @keyframes colorShift2 {
-    0%, 100% { background: radial-gradient(circle, #C4B5FD, #DDD6FE); }
-    50% { background: radial-gradient(circle, #E9D5FF, #F3E8FF); }
+    0%, 100% { background: radial-gradient(circle, #4FC3F7, #81D4FA); }
+    50% { background: radial-gradient(circle, #29B6F6, #4FC3F7); }
 }
 
 @keyframes colorShift3 {
-    0%, 100% { background: radial-gradient(circle, #FECDD3, #FBE0E7); }
-    50% { background: radial-gradient(circle, #FFE4E6, #FFF1F2); }
+    0%, 100% { background: radial-gradient(circle, #FF6B9D, #FF8FB3); }
+    50% { background: radial-gradient(circle, #FF4081, #FF6B9D); }
 }
 
 @keyframes colorShift4 {
-    0%, 100% { background: radial-gradient(circle, #BFDBFE, #DBEAFE); }
-    50% { background: radial-gradient(circle, #E0F2FE, #F0F9FF); }
+    0%, 100% { background: radial-gradient(circle, #FFB347, #FFCC80); }
+    50% { background: radial-gradient(circle, #FFA726, #FFB347); }
 }
 
 @keyframes bgFlow {
