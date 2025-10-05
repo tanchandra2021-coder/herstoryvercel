@@ -74,7 +74,7 @@ function renderCard() {
             <p class="curved-text">Hi, I'm ${firstName}. Let's Chat!</p>
             
             <div class="profile-circle-wrapper">
-                <img src="public/${leader.image}" alt="${name}" onerror="console.error('Failed to load image:', this.src)">
+                <img src="public/${leader.image}" alt="${name}">
             </div>
             
             <h2 class="leader-name">${name}</h2>
