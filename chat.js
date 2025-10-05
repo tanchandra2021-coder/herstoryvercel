@@ -1,5 +1,5 @@
 const GEMINI_API_KEY = 'AIzaSyBYXz-7EuOz8dImz6571zcrAk14ikMlsfU';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent';
 
 const leaders = {
     "Michelle Obama": {
@@ -236,7 +236,7 @@ Respond as ${leaderName} in 2-3 sentences, staying in character. Keep it convers
             }],
             generationConfig: {
                 temperature: 0.9,
-                maxOutputTokens: 200,
+                maxOutputTokens: 300,
             }
         })
     });
@@ -248,17 +248,17 @@ Respond as ${leaderName} in 2-3 sentences, staying in character. Keep it convers
     }
 
     const data = await response.json();
-    console.log('Full API Response:', data);
+    console.log('Full API Response:', JSON.stringify(data, null, 2));
+    console.log('Candidates:', data.candidates);
+    console.log('First candidate:', data.candidates?.[0]);
+    console.log('Content:', data.candidates?.[0]?.content);
+    console.log('Parts:', data.candidates?.[0]?.content?.parts);
     
-    // Handle the response structure - Gemini 2.5 has a different format
+    // Handle Gemini 2.0 response structure
     if (data.candidates && data.candidates.length > 0) {
         const candidate = data.candidates[0];
         if (candidate.content && candidate.content.parts && candidate.content.parts.length > 0) {
-            // Find the first part with text (skip thinking parts)
-            const textPart = candidate.content.parts.find(part => part.text);
-            if (textPart) {
-                return textPart.text;
-            }
+            return candidate.content.parts[0].text;
         }
     }
     
