@@ -1,5 +1,5 @@
 const GEMINI_API_KEY = 'AIzaSyBYXz-7EuOz8dImz6571zcrAk14ikMlsfU';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent';
 
 const leaders = {
     "Michelle Obama": {
