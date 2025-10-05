@@ -195,6 +195,12 @@ body {
     letter-spacing: 2px;
 }
 
+.hero-title::before {
+    content: "👋 "; /* Waving hand emoji before the text */
+    font-size: 3.5rem; /* Adjust size to fit the heading */
+    margin-right: 10px; /* Space between the emoji and the text */
+}
+
 .carousel-container {
     display: flex;
     align-items: center;
@@ -253,7 +259,7 @@ body {
 }
 
 .leader-card {
-    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)); /* Removed purple background */
     backdrop-filter: blur(30px) saturate(180%);
     border-radius: 35px;
     padding: 30px 25px 40px;
@@ -270,130 +276,10 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.leader-card::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(45deg, #E91E63, #9C27B0, #673AB7, #E91E63);
-    background-size: 400% 400%;
-    border-radius: 35px;
-    z-index: -1;
-    animation: borderGlow 8s ease infinite;
-    opacity: 0.6;
-}
-
-@keyframes borderGlow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-@keyframes cardSlideIn {
-    0% { opacity: 0; transform: translateY(80px) scale(0.8) rotateX(-20deg); }
-    100% { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
-}
-
-.curved-text {
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    text-align: center;
-    background: linear-gradient(90deg, #E91E63, #9C27B0, #673AB7, #E91E63);
-    background-size: 200% 200%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: textShimmer 5s ease infinite, curvedFloat 3s ease-in-out infinite;
-    white-space: nowrap;
-    letter-spacing: 1px;
-    z-index: 10;
-}
-
-@keyframes textShimmer {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-
-@keyframes curvedFloat {
-    0%, 100% { transform: translateX(-50%) translateY(0px); }
-    50% { transform: translateX(-50%) translateY(-5px); }
-}
-
-.profile-circle-wrapper {
-    width: 220px;
-    height: 220px;
-    margin-top: 50px;
-    margin-bottom: 25px;
-    position: relative;
-    filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.3));
-}
-
-.profile-circle-wrapper::before,
-.profile-circle-wrapper::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border: 3px solid transparent;
-    animation: ringPulse 3s ease-in-out infinite;
-}
-
-.profile-circle-wrapper::before {
-    width: 240px;
-    height: 240px;
-    border-color: rgba(233, 30, 99, 0.3);
-    animation-delay: 0s;
-}
-
-.profile-circle-wrapper::after {
-    width: 260px;
-    height: 260px;
-    border-color: rgba(156, 39, 176, 0.2);
-    animation-delay: 1.5s;
-}
-
-@keyframes ringPulse {
-    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 0; }
-}
-
-.profile-circle-wrapper img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    border: 8px solid white;
-    box-shadow: 
-        0 20px 60px rgba(0, 0, 0, 0.4),
-        0 0 0 3px rgba(233, 30, 99, 0.3),
-        inset 0 0 20px rgba(255, 255, 255, 0.5);
-    object-fit: cover;
-    animation: imagePopUp 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transition: transform 0.5s ease;
-    position: relative;
-    z-index: 5;
-}
-
-.profile-circle-wrapper:hover img {
-    transform: scale(1.05) rotate(5deg);
-}
-
-@keyframes imagePopUp {
-    0% { opacity: 0; transform: scale(0.3) rotateY(-180deg); }
-    60% { transform: scale(1.1) rotateY(0deg); }
-    100% { opacity: 1; transform: scale(1) rotateY(0deg); }
-}
-
 .leader-name {
     font-size: 2.2rem;
     font-weight: 900;
-    margin: 0 0 8px;
+    margin: 50px 0 8px; /* Adjusted margin for more space at the top */
     text-align: center;
     color: #2D3748;
     animation: fadeSlideUp 0.8s ease 0.3s backwards;
