@@ -1,5 +1,20 @@
 const GEMINI_API_KEY = 'AIzaSyBYXz-7EuOz8dImz6571zcrAk14ikMlsfU';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent';
+const ELEVENLABS_API_KEY = 'sk_ec87367c86d8562008d8f9f6133f0ce9a2a156707aff8277';
+
+// ElevenLabs female voice IDs - each leader gets a unique voice
+const voiceIds = {
+    "Michelle Obama": "EXAVITQu4vr4xnSDxMaL", // Sarah - warm
+    "Angela Merkel": "21m00Tcm4TlvDq8ikWAM", // Rachel - calm, professional
+    "Malala Yousafzai": "XrExE9yKIg1WjnnlVkGX", // Matilda - young, passionate
+    "Ruth Bader Ginsburg": "pNInz6obpgDQGcFmaJgB", // Adam (actually female voice - authoritative)
+    "Indra Nooyi": "MF3mGyEYCl7XYWbV9V6O", // Elli - confident
+    "Sheryl Sandberg": "ThT5KcBeYPX3keUQqHPh", // Freya - energetic
+    "Jacinda Ardern": "jsCqWAovK2LkecY7zXl4", // Fin - compassionate
+    "Mae Jemison": "z9fAnlkpzviPz146aGWa", // Glinda - inspiring
+    "Reshma Saujani": "pqHfZKP75CvOlQylNhV4", // Lily - bold
+    "Sara Blakely": "XB0fDUnXU5powFXDhCwa" // Charlotte - friendly, approachable
+};
 
 const leaders = {
     "Michelle Obama": {
@@ -79,6 +94,73 @@ let currentIndex = 0;
 let chatHistory = [];
 let messageCount = 0;
 const MAX_MESSAGES = 5;
+let currentAudio = null;
+let hasPlayedWelcome = false;
+
+// Play welcome message on page load
+window.addEventListener('load', () => {
+    if (!hasPlayedWelcome) {
+        playWelcomeMessage();
+        hasPlayedWelcome = true;
+    }
+});
+
+async function playWelcomeMessage() {
+    const welcomeText = "Welcome to HerStory!";
+    // Use a pleasant female voice for welcome
+    const welcomeVoiceId = "EXAVITQu4vr4xnSDxMaL"; // Sarah voice
+    
+    try {
+        await speakText(welcomeText, welcomeVoiceId);
+    } catch (error) {
+        console.error('Welcome message error:', error);
+    }
+}
+
+async function speakText(text, voiceId) {
+    try {
+        // Stop any currently playing audio
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio = null;
+        }
+
+        const response = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+            method: 'POST',
+            headers: {
+                'Accept': 'audio/mpeg',
+                'Content-Type': 'application/json',
+                'xi-api-key': ELEVENLABS_API_KEY
+            },
+            body: JSON.stringify({
+                text: text,
+                model_id: "eleven_monolingual_v1",
+                voice_settings: {
+                    stability: 0.5,
+                    similarity_boost: 0.75
+                }
+            })
+        });
+
+        if (!response.ok) {
+            throw new Error(`ElevenLabs API error: ${response.status}`);
+        }
+
+        const audioBlob = await response.blob();
+        const audioUrl = URL.createObjectURL(audioBlob);
+        
+        currentAudio = new Audio(audioUrl);
+        await currentAudio.play();
+        
+        // Clean up URL after playing
+        currentAudio.addEventListener('ended', () => {
+            URL.revokeObjectURL(audioUrl);
+        });
+        
+    } catch (error) {
+        console.error('Text-to-speech error:', error);
+    }
+}
 
 function renderCard() {
     const name = leaderNames[currentIndex];
@@ -122,6 +204,7 @@ function startChat(leaderName) {
     chatHistory = [];
     messageCount = 0;
     const leader = leaders[leaderName];
+    const firstName = leaderName.split(' ')[0];
     
     // Create chat modal
     const chatModal = document.createElement('div');
@@ -141,8 +224,11 @@ function startChat(leaderName) {
             
             <div class="chat-messages" id="chat-messages">
                 <div class="message bot-message">
-                    <p>Hi! I'm ${leaderName.split(' ')[0]}. Ask me anything about ${leader.expertise.join(', ').toLowerCase()}, or how finance intersects with other disciplines!</p>
-                    <small>${MAX_MESSAGES} questions remaining</small>
+                    <img src="public/${leader.image}" alt="${leaderName}" class="message-avatar">
+                    <div class="message-content">
+                        <p>Hi! I'm ${firstName}. Ask me anything about ${leader.expertise.join(', ').toLowerCase()}, or how finance intersects with other disciplines!</p>
+                        <small>${MAX_MESSAGES} questions remaining</small>
+                    </div>
                 </div>
             </div>
             
@@ -154,6 +240,10 @@ function startChat(leaderName) {
     `;
     
     document.body.appendChild(chatModal);
+    
+    // Speak the greeting
+    const greetingText = `Hi! I'm ${firstName}. Ask me anything about ${leader.expertise.join(', ').toLowerCase()}, or how finance intersects with other disciplines!`;
+    speakText(greetingText, voiceIds[leaderName]);
     
     // Focus input
     document.getElementById('chat-input').focus();
@@ -170,6 +260,12 @@ function startChat(leaderName) {
 }
 
 function closeChat() {
+    // Stop any playing audio
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+    }
+    
     const modal = document.querySelector('.chat-modal');
     modal.classList.remove('active');
     setTimeout(() => modal.remove(), 300);
@@ -182,34 +278,44 @@ async function sendMessage(leaderName) {
     if (!message) return;
     
     if (messageCount >= MAX_MESSAGES) {
-        addMessage('bot', `I've reached my message limit for this session! Feel free to explore other leaders by closing this chat.`);
+        const limitText = `I've reached my message limit for this session! Feel free to explore other leaders by closing this chat.`;
+        addMessage('bot', limitText, leaderName);
+        speakText(limitText, voiceIds[leaderName]);
         return;
     }
     
     // Add user message
-    addMessage('user', message);
+    addMessage('user', message, leaderName);
     input.value = '';
     
     // Show typing indicator
-    const typingId = addTypingIndicator();
+    const typingId = addTypingIndicator(leaderName);
     
     try {
         const response = await callGemini(leaderName, message);
         removeTypingIndicator(typingId);
-        addMessage('bot', response);
+        addMessage('bot', response, leaderName);
+        
+        // Speak the response
+        speakText(response, voiceIds[leaderName]);
+        
         messageCount++;
         
         const remaining = MAX_MESSAGES - messageCount;
         if (remaining > 0) {
             updateMessageCount(remaining);
         } else {
-            addMessage('bot', `That's all the questions for now! Feel free to chat with another leader.`);
+            const endText = `That's all the questions for now! Feel free to chat with another leader.`;
+            addMessage('bot', endText, leaderName);
+            speakText(endText, voiceIds[leaderName]);
             document.getElementById('chat-input').disabled = true;
             document.getElementById('send-btn').disabled = true;
         }
     } catch (error) {
         removeTypingIndicator(typingId);
-        addMessage('bot', "I'm having trouble responding right now. Please try again!");
+        const errorText = "I'm having trouble responding right now. Please try again!";
+        addMessage('bot', errorText, leaderName);
+        speakText(errorText, voiceIds[leaderName]);
         console.error('Error:', error);
     }
 }
@@ -248,13 +354,7 @@ Respond as ${leaderName} in 2-3 sentences, staying in character. Keep it convers
     }
 
     const data = await response.json();
-    console.log('Full API Response:', JSON.stringify(data, null, 2));
-    console.log('Candidates:', data.candidates);
-    console.log('First candidate:', data.candidates?.[0]);
-    console.log('Content:', data.candidates?.[0]?.content);
-    console.log('Parts:', data.candidates?.[0]?.content?.parts);
     
-    // Handle Gemini 2.0 response structure
     if (data.candidates && data.candidates.length > 0) {
         const candidate = data.candidates[0];
         if (candidate.content && candidate.content.parts && candidate.content.parts.length > 0) {
@@ -265,22 +365,46 @@ Respond as ${leaderName} in 2-3 sentences, staying in character. Keep it convers
     throw new Error('Unable to parse response from API');
 }
 
-function addMessage(type, text) {
+function addMessage(type, text, leaderName) {
     const messagesContainer = document.getElementById('chat-messages');
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${type}-message`;
-    messageDiv.innerHTML = `<p>${text}</p>`;
+    
+    if (type === 'bot') {
+        const leader = leaders[leaderName];
+        messageDiv.innerHTML = `
+            <img src="public/${leader.image}" alt="${leaderName}" class="message-avatar">
+            <div class="message-content">
+                <p>${text}</p>
+            </div>
+        `;
+    } else {
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                <p>${text}</p>
+            </div>
+        `;
+    }
+    
     messagesContainer.appendChild(messageDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
 
-function addTypingIndicator() {
+function addTypingIndicator(leaderName) {
     const messagesContainer = document.getElementById('chat-messages');
     const typingDiv = document.createElement('div');
     const id = 'typing-' + Date.now();
+    const leader = leaders[leaderName];
+    
     typingDiv.id = id;
-    typingDiv.className = 'message bot-message typing-indicator';
-    typingDiv.innerHTML = '<p><span></span><span></span><span></span></p>';
+    typingDiv.className = 'message bot-message';
+    typingDiv.innerHTML = `
+        <img src="public/${leader.image}" alt="${leaderName}" class="message-avatar">
+        <div class="message-content typing-indicator">
+            <span></span><span></span><span></span>
+        </div>
+    `;
+    
     messagesContainer.appendChild(typingDiv);
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
     return id;
@@ -294,9 +418,10 @@ function removeTypingIndicator(id) {
 function updateMessageCount(remaining) {
     const messagesContainer = document.getElementById('chat-messages');
     const lastMessage = messagesContainer.lastElementChild;
+    const messageContent = lastMessage.querySelector('.message-content');
     const small = document.createElement('small');
     small.textContent = `${remaining} question${remaining !== 1 ? 's' : ''} remaining`;
-    lastMessage.appendChild(small);
+    messageContent.appendChild(small);
 }
 
 // Event listeners
