@@ -182,7 +182,7 @@ async function sendMessage(leaderName) {
     if (!message) return;
     
     if (messageCount >= MAX_MESSAGES) {
-        addMessage('bot', `I've reached my message limit for this session! Feel free to explore other leaders by closing this chat. 😊`);
+        addMessage('bot', `I've reached my message limit for this session! Feel free to explore other leaders by closing this chat.`);
         return;
     }
     
@@ -203,7 +203,7 @@ async function sendMessage(leaderName) {
         if (remaining > 0) {
             updateMessageCount(remaining);
         } else {
-            addMessage('bot', `That's all the questions for now! Feel free to chat with another leader. 💜`);
+            addMessage('bot', `That's all the questions for now! Feel free to chat with another leader.`);
             document.getElementById('chat-input').disabled = true;
             document.getElementById('send-btn').disabled = true;
         }
@@ -242,10 +242,14 @@ Respond as ${leaderName} in 2-3 sentences, staying in character. Keep it convers
     });
 
     if (!response.ok) {
+        const errorText = await response.text();
+        console.error('API Error:', errorText);
         throw new Error('API request failed');
     }
 
     const data = await response.json();
+    console.log('Full API Response:', data);
+    
     return data.candidates[0].content.parts[0].text;
 }
 
