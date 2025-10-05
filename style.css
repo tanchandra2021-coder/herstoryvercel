@@ -42,7 +42,7 @@ body {
 .blob-1 {
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, #FF69B4, #FF85C1);
+    background: radial-gradient(circle, #FFB3D9, #FFC9E5);
     top: -200px;
     left: -200px;
     animation: float 20s ease-in-out infinite, colorShift1 15s ease-in-out infinite;
@@ -51,7 +51,7 @@ body {
 .blob-2 {
     width: 700px;
     height: 700px;
-    background: radial-gradient(circle, #4FC3F7, #81D4FA);
+    background: radial-gradient(circle, #A8D8F0, #C8E6F5);
     top: 50%;
     right: -300px;
     animation: float 23s ease-in-out infinite reverse, colorShift2 18s ease-in-out infinite;
@@ -60,7 +60,7 @@ body {
 .blob-3 {
     width: 550px;
     height: 550px;
-    background: radial-gradient(circle, #FF6B9D, #FF8FB3);
+    background: radial-gradient(circle, #FFB3C6, #FFCCD9);
     bottom: -200px;
     left: 30%;
     animation: float 28s ease-in-out infinite, colorShift3 20s ease-in-out infinite;
@@ -69,7 +69,7 @@ body {
 .blob-4 {
     width: 650px;
     height: 650px;
-    background: radial-gradient(circle, #FFB347, #FFCC80);
+    background: radial-gradient(circle, #FFD4A3, #FFE4C4);
     top: 20%;
     left: 50%;
     animation: float 26s ease-in-out infinite reverse, colorShift4 17s ease-in-out infinite;
@@ -158,13 +158,13 @@ body {
 
 .subtitle {
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 300;
     color: #4A5568;
-    max-width: 700px;
+    max-width: 750px;
     margin: 0 auto;
     line-height: 1.8;
     animation: fadeSlideUp 1s ease 0.3s backwards;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
 }
 
 .subtitle strong {
