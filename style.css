@@ -175,6 +175,8 @@ body {
     position: relative;
     z-index: 10;
     margin-top: 20px;
+    margin-bottom: 100px;
+    padding-bottom: 50px;
 }
 
 .arrow-btn {
