@@ -7,13 +7,13 @@ const voiceIds = {
     "Michelle Obama": "EXAVITQu4vr4xnSDxMaL", // Sarah - warm
     "Angela Merkel": "21m00Tcm4TlvDq8ikWAM", // Rachel - calm, professional
     "Malala Yousafzai": "XrExE9yKIg1WjnnlVkGX", // Matilda - young, passionate
-    "Ruth Bader Ginsburg": "pNInz6obpgDQGcFmaJgB", // Adam (actually female voice - authoritative)
+    "Ruth Bader Ginsburg": "XB0fDUnXU5powFXDhCwa", // Charlotte - authoritative female
     "Indra Nooyi": "MF3mGyEYCl7XYWbV9V6O", // Elli - confident
     "Sheryl Sandberg": "ThT5KcBeYPX3keUQqHPh", // Freya - energetic
     "Jacinda Ardern": "jsCqWAovK2LkecY7zXl4", // Fin - compassionate
     "Mae Jemison": "z9fAnlkpzviPz146aGWa", // Glinda - inspiring
-    "Reshma Saujani": "pqHfZKP75CvOlQylNhV4", // Lily - bold
-    "Sara Blakely": "XB0fDUnXU5powFXDhCwa" // Charlotte - friendly, approachable
+    "Reshma Saujani": "CwhRBWXzGAHq8TQ4Fs17", // Serena - bold and empowering
+    "Sara Blakely": "oWAxZDx7w5VEj9dCyTzz" // Grace - friendly, approachable
 };
 
 const leaders = {
