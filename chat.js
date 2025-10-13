@@ -12,7 +12,7 @@ const voiceIds = {
     "Sheryl Sandberg": "ThT5KcBeYPX3keUQqHPh", // Freya - energetic
     "Jacinda Ardern": "jsCqWAovK2LkecY7zXl4", // Fin - compassionate
     "Mae Jemison": "z9fAnlkpzviPz146aGWa", // Glinda - inspiring
-    "Reshma Saujani": "CwhRBWXzGAHq8TQ4Fs17", // Serena - bold and empowering
+    "Reshma Saujani": "EXAVITQu4vr4xnSDxMaL", // Sarah - bold 
     "Sara Blakely": "oWAxZDx7w5VEj9dCyTzz" // Grace - friendly, approachable
 };
 
