@@ -242,12 +242,16 @@ body {
     object-fit: cover;
 }
 
-.leader-name {
+
+   .leader-name {
     font-size: 2.2rem;
     font-weight: 900;
     margin: 0 0 8px;
     color: #2D3748;
+    text-align: center;
+    width: 100%;
 }
+
 
 .leader-title {
     font-size: 1.3rem;
